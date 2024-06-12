@@ -50,6 +50,8 @@ MonoBehaviour:
   _parentObjectToDestoy: {fileID: 0}
   _self: 0
   _parent: 0
+  _gameobjectTagToDestoy: 
+  _gameobjectTagShiled: 
 --- !u!1 &1441379300746785533
 GameObject:
   m_ObjectHideFlags: 0
@@ -100,6 +102,8 @@ MonoBehaviour:
   _parentObjectToDestoy: {fileID: 8428983463255832418}
   _self: 0
   _parent: 1
+  _gameobjectTagToDestoy: 
+  _gameobjectTagShiled: 
 --- !u!1 &1803241302090241763
 GameObject:
   m_ObjectHideFlags: 0
@@ -110,6 +114,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8273802097952403786}
   - component: {fileID: 4920947612303667299}
+  - component: {fileID: 7294278038047930701}
   m_Layer: 0
   m_Name: CollidedObjectDestroy
   m_TagString: Untagged
@@ -150,6 +155,23 @@ MonoBehaviour:
   _parentObjectToDestoy: {fileID: 0}
   _self: 0
   _parent: 0
+  _gameobjectTagToDestoy: TowerBlock
+  _gameobjectTagShiled: Obstacle
+--- !u!114 &7294278038047930701
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1803241302090241763}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 842efde7eca014442a430b61cb4fdc78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _tags:
+  - TowerBlock
+  - Obstacle
 --- !u!1 &7829004491789629067
 GameObject:
   m_ObjectHideFlags: 0
@@ -244,7 +266,10 @@ GameObject:
   - component: {fileID: 487003089706639539}
   - component: {fileID: 8514718818751254906}
   - component: {fileID: 7924887776643604418}
+  - component: {fileID: 3296148382340639800}
+  - component: {fileID: 5022922118821393641}
   - component: {fileID: 8508585108013111157}
+  - component: {fileID: 7893113246125805791}
   m_Layer: 0
   m_Name: Projectile
   m_TagString: Untagged
@@ -285,7 +310,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speed: 0.01
   _actionDestroyAfterTime: {fileID: 7990340393040656364}
-  _executor: {fileID: 7924887776643604418}
+  _executorBase: {fileID: 3296148382340639800}
+  _executorPhysics: {fileID: 7924887776643604418}
 --- !u!114 &7924887776643604418
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -301,10 +327,39 @@ MonoBehaviour:
   _actions:
   - {fileID: 4920947612303667299}
   - {fileID: 8364343619920789841}
-  _condition: {fileID: 0}
+  _condition: {fileID: 7294278038047930701}
   _state: 0
   _onCollision: 1
   _onTrigger: 0
+--- !u!114 &3296148382340639800
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8428983463255832418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f6a0c9dc480d9b4db992ce1e588d546, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _actions:
+  - {fileID: 5022922118821393641}
+  _condition: {fileID: 0}
+--- !u!114 &5022922118821393641
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8428983463255832418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8adcb3923a16e4e42ac0856981bb6add, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _moveSpeed: 10000
+  _rb: {fileID: 7893113246125805791}
 --- !u!135 &8508585108013111157
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -312,7 +367,7 @@ SphereCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8428983463255832418}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: bd8e6d458b8e4be4c86d364a07fb1cf4, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -326,3 +381,30 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.15181729
   m_Center: {x: 0, y: -0.000016957521, z: 0}
+--- !u!54 &7893113246125805791
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8428983463255832418}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 4
+  m_CollisionDetection: 2

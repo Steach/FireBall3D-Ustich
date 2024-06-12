@@ -4,19 +4,18 @@ namespace FireBall.Core.Projectile
 {
     public class ProjectileBehavior : MonoBehaviour
     {
-        [SerializeField] private float _speed;
+        [Header("Awake Action")]
         [SerializeField] private ActionBase _actionDestroyAfterTime;
-        [SerializeField] private ExecutorOnPhysics _executor;
+        [Space]
+        [Header("Executors")]
+        [SerializeField] private ExecutorBase _executorBase;
+        [SerializeField] private ExecutorOnPhysics _executorPhysics;
 
         private void Awake()
         {
             _actionDestroyAfterTime.Execute(gameObject);
             gameObject.transform.parent = null;
-        }
-
-        private void Update()
-        {
-            transform.Translate(Vector3.forward * _speed);
+            _executorBase.Execute();
         }
     }
 }
