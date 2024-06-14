@@ -45,11 +45,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _toDestroy: 0
-  _withDelay: 1
-  _delay: 3
-  _parentObjectToDestoy: {fileID: 0}
   _self: 0
   _parent: 0
+  _parentObjectToDestoy: {fileID: 0}
+  _withDelay: 1
+  _delay: 3
   _gameobjectTagToDestoy: 
   _gameobjectTagShiled: 
 --- !u!1 &1441379300746785533
@@ -97,11 +97,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _toDestroy: 0
-  _withDelay: 0
-  _delay: 0
-  _parentObjectToDestoy: {fileID: 8428983463255832418}
   _self: 0
   _parent: 1
+  _parentObjectToDestoy: {fileID: 8428983463255832418}
+  _withDelay: 0
+  _delay: 0
   _gameobjectTagToDestoy: 
   _gameobjectTagShiled: 
 --- !u!1 &1803241302090241763
@@ -150,11 +150,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _toDestroy: 1
-  _withDelay: 0
-  _delay: 0
-  _parentObjectToDestoy: {fileID: 0}
   _self: 0
   _parent: 0
+  _parentObjectToDestoy: {fileID: 0}
+  _withDelay: 0
+  _delay: 0
   _gameobjectTagToDestoy: TowerBlock
   _gameobjectTagShiled: Obstacle
 --- !u!114 &7294278038047930701
@@ -272,7 +272,7 @@ GameObject:
   - component: {fileID: 7893113246125805791}
   m_Layer: 0
   m_Name: Projectile
-  m_TagString: Untagged
+  m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -308,10 +308,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eda3d2d4be009fc459796220c841a182, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 0.01
   _actionDestroyAfterTime: {fileID: 7990340393040656364}
   _executorBase: {fileID: 3296148382340639800}
   _executorPhysics: {fileID: 7924887776643604418}
+  _startPosition: {x: 0, y: 0.3, z: 0}
 --- !u!114 &7924887776643604418
 MonoBehaviour:
   m_ObjectHideFlags: 0

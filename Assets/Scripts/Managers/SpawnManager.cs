@@ -23,6 +23,7 @@ namespace FireBall.Core.Managers
             public int _countSpawn;
             public GameObject _prefabToSpawn;
             public GameObject _parentObject;
+            public GameObject _prefabChest;
         }
     }
 }

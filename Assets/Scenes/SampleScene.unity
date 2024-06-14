@@ -725,6 +725,7 @@ MonoBehaviour:
     _countSpawn: 30
     _prefabToSpawn: {fileID: 7788870156866827375, guid: 6e6995a1696a8c94cafca6c25288e67f, type: 3}
     _parentObject: {fileID: 1512652326}
+    _prefabChest: {fileID: 1008762731391946710, guid: 4202ef0fb9dc92b4e922668830970f1b, type: 3}
 --- !u!1 &1525515870
 GameObject:
   m_ObjectHideFlags: 0
