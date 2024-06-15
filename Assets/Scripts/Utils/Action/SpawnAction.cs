@@ -5,6 +5,8 @@ namespace FireBall.Core
 {
     public class SpawnAction : ActionBase
     {
+        [SerializeField] private bool _isChestSpawn;
+
         public override void Execute(object data = null)
         {
             if (data is SpawnManager.SpawnInformation _spawnInformation)
@@ -31,10 +33,13 @@ namespace FireBall.Core
                     rotation = new Quaternion(rotation.x, rotation.y + 0.1f, rotation.z, rotation.w);
                 }
 
-                if (parent != null)
-                    Instantiate(chestPrefab, currentPointSpawn, chestPrefab.transform.rotation, parent.transform);
-                if (parent == null)
-                    Instantiate(chestPrefab, currentPointSpawn, rotation);
+                if (_isChestSpawn)
+                {
+                    if (parent != null)
+                        Instantiate(chestPrefab, currentPointSpawn, chestPrefab.transform.rotation, parent.transform);
+                    if (parent == null)
+                        Instantiate(chestPrefab, currentPointSpawn, chestPrefab.transform.rotation);
+                }
             }
         }
     }

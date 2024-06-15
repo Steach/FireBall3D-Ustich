@@ -7,6 +7,7 @@ TagManager:
   - Obstacle
   - TowerBlock
   - Projectile
+  - Chest
   layers:
   - Default
   - TransparentFX

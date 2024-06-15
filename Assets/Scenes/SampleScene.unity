@@ -691,6 +691,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7370d6b2a5413e4f81902cda713d7c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isChestSpawn: 1
 --- !u!114 &1512652329
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -722,7 +723,7 @@ MonoBehaviour:
   _spawnInformation:
     _startPosition: {x: 0, y: 0.25, z: 20}
     _stepSpawn: 0.5
-    _countSpawn: 30
+    _countSpawn: 2
     _prefabToSpawn: {fileID: 7788870156866827375, guid: 6e6995a1696a8c94cafca6c25288e67f, type: 3}
     _parentObject: {fileID: 1512652326}
     _prefabChest: {fileID: 1008762731391946710, guid: 4202ef0fb9dc92b4e922668830970f1b, type: 3}

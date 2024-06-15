@@ -17,6 +17,17 @@ namespace FireBall.Core
                 }
                 return false;
             }
+
+            if (data is AnimExecutorOnPhysics.AnimationForExecute animInformation)
+            {
+                foreach (var tag in _tags)
+                {
+                    if(animInformation.Collision.gameObject.tag == tag)
+                        return true;
+                }
+                return false;
+            }
+
             return false;
         }
     }
