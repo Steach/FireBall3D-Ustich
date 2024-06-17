@@ -6,6 +6,9 @@ namespace FireBall.Core
     public class SpawnAction : ActionBase
     {
         [SerializeField] private bool _isChestSpawn;
+        [SerializeField] private bool _isTowerSpawner;
+        [SerializeField] private GameManager _gameManager;
+        private GameObject _chest;
 
         public override void Execute(object data = null)
         {
@@ -36,9 +39,14 @@ namespace FireBall.Core
                 if (_isChestSpawn)
                 {
                     if (parent != null)
-                        Instantiate(chestPrefab, currentPointSpawn, chestPrefab.transform.rotation, parent.transform);
+                        _chest = Instantiate(chestPrefab, currentPointSpawn, chestPrefab.transform.rotation, parent.transform);
                     if (parent == null)
-                        Instantiate(chestPrefab, currentPointSpawn, chestPrefab.transform.rotation);
+                        _chest = Instantiate(chestPrefab, currentPointSpawn, chestPrefab.transform.rotation);
+                }
+
+                if (_isTowerSpawner)
+                {
+                    _gameManager.Init(_chest.GetComponentInChildren<PlayAnimationAction>());
                 }
             }
         }

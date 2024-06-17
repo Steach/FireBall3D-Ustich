@@ -1,12 +1,11 @@
-using System;
-using UnityEditor.Animations;
-using UnityEngine;
+using Unity.VisualScripting;
 
 namespace FireBall.Core
 {
     public class PlayAnimationAction : ActionBase
     {
         public System.Action<int> AnimAction;
+        public System.Action<bool> GameOver;
         public override void Execute(object data = null)
         {
             if (data is AnimExecutorOnPhysics.AnimationForExecute _animInformation)
@@ -31,7 +30,10 @@ namespace FireBall.Core
                         _Animator.Play(_AnimationClipShoot.name);
 
                     if (_Count >= 3)
+                    {
                         _Animator.Play(_AnimationClipOpen.name);
+                        GameOver?.Invoke(true);
+                    }
                 }
             }
         }
