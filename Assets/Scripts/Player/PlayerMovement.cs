@@ -26,8 +26,11 @@ namespace FireBall.Core.Player
 
         private void Shooting(InputAction.CallbackContext callback)
         {
-            _spawnInfo._startPosition = _spawnInfo._parentObject.transform.position;
-            _executor.Execute(_spawnInfo);
+            if (!_agent.hasPath)
+            {
+                _spawnInfo._startPosition = _spawnInfo._parentObject.transform.position;
+                _executor.Execute(_spawnInfo);
+            }
         }
 
         private void OnEnable() => _playerInput.Enable();
