@@ -191,8 +191,11 @@ MonoBehaviour:
   _animationForExecute:
     Animator: {fileID: 8845867667480253584}
     AnimatorController: {fileID: 9100000, guid: ad0dd55d378c55f4cbe603c1ef93d4f0, type: 2}
-    AnimationClip: {fileID: 7400000, guid: 053c6509393b77040a520680afcc4062, type: 2}
+    AnimationClipOpen: {fileID: 7400000, guid: 053c6509393b77040a520680afcc4062, type: 2}
+    AnimationClipShoot: {fileID: 7400000, guid: 64998ff8537af584da6623c9174ca11a, type: 2}
     Collider: {fileID: 0}
+    ShootCount: 0
+  _playAnimationAction: {fileID: 7652134335422797539}
 --- !u!114 &497757646818123308
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -12,6 +12,15 @@ namespace FireBall.Core
 
         [Space]
         [SerializeField] private AnimationForExecute _animationForExecute;
+        [Space]
+        [Header("Invoke Action")]
+        [SerializeField] private PlayAnimationAction _playAnimationAction;
+
+        private void Awake()
+        {
+            _animationForExecute.ShootCount = 0;
+            _playAnimationAction.AnimAction += AddShootCount;
+        }
 
         private void OnCollisionEnter(Collision collision)
         {
@@ -67,14 +76,21 @@ namespace FireBall.Core
             }
         }
 
+        private void AddShootCount(int i)
+        {
+            _animationForExecute.ShootCount += i;
+        }
+
         [System.Serializable]
         public struct AnimationForExecute
         {
             public Animator Animator;
             public UnityEditor.Animations.AnimatorController AnimatorController;
-            public AnimationClip AnimationClip;
+            public AnimationClip AnimationClipOpen;
+            public AnimationClip AnimationClipShoot;
             public Collision Collision;
             public Collider Collider;
+            public int ShootCount;
         }
     }
 }
