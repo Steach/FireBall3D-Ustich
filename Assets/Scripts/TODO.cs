@@ -1,4 +1,4 @@
 public class TODO
 {
-    //Розібратись чому не працюють кнопки
+    //Change shoot from button to tap
 }
