@@ -14,8 +14,15 @@ namespace FireBall.Core.Player
         [Header("Shooting")]
         [SerializeField] private ExecutorBase _executor;
         [SerializeField] SpawnManager.SpawnInformation _spawnInfo;
+        [SerializeField] private Inventory _inventory;
 
         private InputSystem.PlayerInput _playerInput;
+
+        public System.Action<bool> PlayerAtDestinationEvent;
+
+        public bool PlayerAtDestination { get; private set; }
+        private bool _sendEventAtOnse = true;
+        private int _count = 0;
 
         private void Awake()
         {
@@ -24,12 +31,27 @@ namespace FireBall.Core.Player
             _playerInput.Controller.Shoot.performed += Shooting;
         }
 
+        private void Update()
+        {
+            if (_sendEventAtOnse && _count < 1)
+            {
+                if (!_agent.hasPath)
+                {
+                    _count =+ 1;
+                    PlayerAtDestination = true;
+                    PlayerAtDestinationEvent?.Invoke(PlayerAtDestination);
+                }
+            }
+            
+        }
+
         private void Shooting(InputAction.CallbackContext callback)
         {
-            if (!_agent.hasPath)
+            if (!_agent.hasPath && _inventory.GetAmmo() > 0)
             {
                 _spawnInfo._startPosition = _spawnInfo._parentObject.transform.position;
                 _executor.Execute(_spawnInfo);
+                _inventory.SpendAmmo(1);
             }
         }
 
