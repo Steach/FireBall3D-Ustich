@@ -9,6 +9,7 @@ namespace FireBall.Core.Managers
         [SerializeField] private Inventory _playerInventory;
         [Space]
         [SerializeField] private GameObject[] _gameOverScreen;
+        [SerializeField] private GameObject[] _gamePlayObjects;
         [Space]
         [Header("Controllers")]
         [SerializeField] private ButtonController _buttonController;
@@ -18,12 +19,11 @@ namespace FireBall.Core.Managers
 
         private void Awake()
         {
-            SetActiveOrInactiveObjects(false);
+            SetActiveOrInactiveObjects(false, _gameOverScreen);
+            SetActiveOrInactiveObjects(true, _gamePlayObjects);
             _showAmmoController.ChangeUIAmmo(_playerInventory.GetAmmo());
 
-            //_gameManager.GameOverWithTime += SetStars;
             _gameManager.IsGameOverEvent += SetStars;
-            
 
             _gameManager.ChangeTimeEvent += ChangeTimer;
             _playerInventory.AmmoIsChanged += ChangeAmmoUI;
@@ -32,23 +32,18 @@ namespace FireBall.Core.Managers
         private void SetStars(bool ChestStatus, bool AmmoStatus, float gameTime)
         {
             _starController.CheckGameInvariable(ChestStatus, AmmoStatus, gameTime);
-            SetActiveOrInactiveObjects(true);
+            SetActiveOrInactiveObjects(true, _gameOverScreen);
+            SetActiveOrInactiveObjects(false, _gamePlayObjects);
         }
 
-        private void ChangeTimer(float time)
-        {
-            _timerController.ChangeTimer(time);
-        }
+        private void ChangeTimer(float time) => _timerController.ChangeTimer(time);
 
-        private void ChangeAmmoUI(int ammoCount)
-        {
-            _showAmmoController.ChangeUIAmmo(ammoCount);
-        }
+        private void ChangeAmmoUI(int ammoCount) => _showAmmoController.ChangeUIAmmo(ammoCount);
 
-        private void SetActiveOrInactiveObjects(bool _state)
+        private void SetActiveOrInactiveObjects(bool _state, GameObject[] objects)
         {
-            foreach (var screenObject in _gameOverScreen)
-                screenObject.SetActive(_state);
+            foreach (var obj in objects)
+                obj.SetActive(_state);
         }
     }
 }

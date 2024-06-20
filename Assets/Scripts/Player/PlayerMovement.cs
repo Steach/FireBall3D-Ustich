@@ -15,6 +15,7 @@ namespace FireBall.Core.Player
         [SerializeField] private ExecutorBase _executor;
         [SerializeField] SpawnManager.SpawnInformation _spawnInfo;
         [SerializeField] private Inventory _inventory;
+        [SerializeField] private ButtonShootAction _shootAction;
 
         private InputSystem.PlayerInput _playerInput;
 
@@ -28,7 +29,8 @@ namespace FireBall.Core.Player
         {
             _playerInput = new InputSystem.PlayerInput();
             _agent.SetDestination(_posTransform.position);
-            _playerInput.Controller.Shoot.performed += Shooting;
+            _playerInput.Controller.Shoot.performed += ShootingDelegate;
+            _shootAction.ShootButtonEvent += ShootingButton;
         }
 
         private void Update()
@@ -45,7 +47,18 @@ namespace FireBall.Core.Player
             
         }
 
-        private void Shooting(InputAction.CallbackContext callback)
+
+        private void ShootingDelegate(InputAction.CallbackContext callback)
+        {
+            ShootingBase();
+        }
+
+        private void ShootingButton()
+        {
+            ShootingBase();
+        }
+
+        private void ShootingBase()
         {
             if (!_agent.hasPath && _inventory.GetAmmo() > 0)
             {

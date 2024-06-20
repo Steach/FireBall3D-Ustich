@@ -24,14 +24,14 @@ namespace FireBall.Core.Managers
         public System.Action<bool, bool, float> IsGameOverEvent;
 
         public bool IsGameOver { get; private set; }
-        private bool CrashTheChest = false;
-        private bool AmmoIsRunOut = false;
+        private bool _crashTheChest = false;
+        private bool _ammoIsRunOut = false;
         private bool _playerAtDistantion = false;
 
         private void Awake()
         {
             IsGameOver = false;
-            CrashTheChest = false;
+            _crashTheChest = false;
             _playerInventory.AmmoIsChanged += GetAmmoCount;
             _playerMovement.PlayerAtDestinationEvent += CheckPlayer;
         }
@@ -60,18 +60,23 @@ namespace FireBall.Core.Managers
         private void GetAmmoCount(int ammoCount)
         {
             if (ammoCount <= 0)
-                AmmoIsRunOut = true;
+            {
+                _ammoIsRunOut = true;
+                Debug.Log($"Ammo is runout = {_ammoIsRunOut}");
+            }  
         }
 
-        private void GetCrashedChestState(bool _chestIsCrashed) => CrashTheChest = _chestIsCrashed;
+        private void GetCrashedChestState(bool _chestIsCrashed) => _crashTheChest = _chestIsCrashed;
 
         private void GameStatus()
         {
-            if (CrashTheChest || AmmoIsRunOut)
+            if (_crashTheChest || _ammoIsRunOut)
                 IsGameOver = true;
 
+
             if (IsGameOver)
-                IsGameOverEvent(CrashTheChest, AmmoIsRunOut, _gameTime);
+                IsGameOverEvent?.Invoke(_crashTheChest, _ammoIsRunOut, _gameTime);
+                
         }
 
         private void CheckPlayer(bool _isAtDist)
